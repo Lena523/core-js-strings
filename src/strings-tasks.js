@@ -309,7 +309,8 @@ function reverseString(str) {
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
 function orderAlphabetically(str) {
-  
+  const strSorted = str.split('').sort().join('');
+  return strSorted;
 }
 
 /**
@@ -324,8 +325,9 @@ function orderAlphabetically(str) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  const arrHas = str.includes(substring);
+  return arrHas;
 }
 
 /**
@@ -342,8 +344,14 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = /[aeiouy]/gi;
+  const hasVowel = str.match(vowels);
+  if (hasVowel) {
+    return hasVowel.length;
+  }
+
+  return 0;
 }
 
 /**
@@ -359,8 +367,10 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let currentArr = str.toLowerCase();
+  currentArr = currentArr.split().join();
+  return currentArr === currentArr.split().reverse().join();
 }
 
 /**
