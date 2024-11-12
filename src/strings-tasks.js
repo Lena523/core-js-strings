@@ -429,8 +429,20 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let arrInverted = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] !== ' ') {
+      if (str[i] === str[i].toUpperCase()) {
+        arrInverted += str[i].toLowerCase();
+      } else {
+        arrInverted += str[i].toUpperCase();
+      }
+    } else {
+      arrInverted += str[i];
+    }
+  }
+  return arrInverted;
 }
 
 /**
@@ -446,8 +458,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -460,8 +472,10 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const arrValue = value.replace('!', '');
+  const variables = arrValue.split(' ');
+  return `${variables[1]} ${variables[2]}`;
 }
 
 /**
@@ -475,8 +489,10 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  let strA = str.replace('<', '');
+  strA = strA.replace('>', '');
+  return strA;
 }
 
 /**
@@ -494,8 +510,10 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  let strB = str.replaceAll(';', ',');
+  strB = strB.split(',');
+  return strB;
 }
 
 /**
@@ -514,8 +532,82 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const shift = 13;
+  const reg = /[а-яa-z1-9]/gi;
+  const dict1 = {
+    A: 1,
+    B: 2,
+    C: 3,
+    D: 4,
+    E: 5,
+    F: 6,
+    G: 7,
+    H: 8,
+    I: 9,
+    J: 10,
+    K: 11,
+    L: 12,
+    M: 13,
+    N: 14,
+    O: 15,
+    P: 16,
+    Q: 17,
+    R: 18,
+    S: 19,
+    T: 20,
+    U: 21,
+    V: 22,
+    W: 23,
+    X: 24,
+    Y: 25,
+    Z: 26,
+  };
+
+  const dict2 = {
+    0: 'Z',
+    1: 'A',
+    2: 'B',
+    3: 'C',
+    4: 'D',
+    5: 'E',
+    6: 'F',
+    7: 'G',
+    8: 'H',
+    9: 'I',
+    10: 'J',
+    11: 'K',
+    12: 'L',
+    13: 'M',
+    14: 'N',
+    15: 'O',
+    16: 'P',
+    17: 'Q',
+    18: 'R',
+    19: 'S',
+    20: 'T',
+    21: 'U',
+    22: 'V',
+    23: 'W',
+    24: 'X',
+    25: 'Y',
+  };
+
+  let cipher = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const letter = str[i];
+    if (letter.match(reg)) {
+      const num = (dict1[letter.toUpperCase()] + shift) % 26;
+      if (str[i] === str[i].toUpperCase()) {
+        cipher += dict2[num];
+      } else {
+        cipher += dict2[num].toLowerCase();
+      }
+    } else {
+      cipher += str[i];
+    }
+  }
+  return cipher;
 }
 
 /**
